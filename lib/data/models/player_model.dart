@@ -6,10 +6,12 @@ part 'player_model.g.dart';
 class PlayerModel {
   final int id;
   final String name;
+  final int score;
 
   PlayerModel({
     this.id = 0,
     this.name = '',
+    this.score = 0,
   });
 
   /* static const empty = PlayerModel(

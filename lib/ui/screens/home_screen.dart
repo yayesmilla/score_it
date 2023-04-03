@@ -24,8 +24,6 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Score It!'),
       ),
       body: const HomeScreenLayout(),
-      //floatingActionButton: const AddPlayerButtonWidget(),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

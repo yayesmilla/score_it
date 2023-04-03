@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:score_it/ui/widgets/add_player_button_widget.dart';
-import 'package:score_it/ui/widgets/players_list_widget.dart';
+import 'package:score_it/ui/widgets/add_player_button.dart';
+import 'package:score_it/ui/widgets/players_list.dart';
 
 class HomeScreenLayout extends StatelessWidget {
   const HomeScreenLayout({super.key});
@@ -9,12 +9,14 @@ class HomeScreenLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(80),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const <Widget>[
-          AddPlayerButtonWidget(),
-          PlayersListWidget(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const <Widget>[
+            AddPlayerButton(),
+            PlayersList(),
+          ],
+        ),
       ),
     );
   }
