@@ -13,7 +13,7 @@ class AddPlayerDialogWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _renderNameInput(),
-          _renderButtons(),
+          _renderButtons(context),
           const Padding(
             padding: EdgeInsets.all(15),
           ),
@@ -34,13 +34,13 @@ class AddPlayerDialogWidget extends StatelessWidget {
     );
   }
 
-  Widget _renderButtons() {
+  Widget _renderButtons(context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _renderCancelButton(),
+          _renderCancelButton(context),
           const SizedBox(
             width: 10,
           ),
@@ -58,11 +58,13 @@ class AddPlayerDialogWidget extends StatelessWidget {
     );
   }
 
-  Widget _renderCancelButton() {
+  Widget _renderCancelButton(context) {
     return CupertinoButton(
       color: Colors.grey,
       child: const Text('Cancel'),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }
