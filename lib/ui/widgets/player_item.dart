@@ -4,11 +4,13 @@ import 'package:score_it/data/models/player_model.dart';
 import 'package:score_it/logics/bloc/player_bloc.dart';
 
 class PlayerItem extends StatelessWidget {
+  final int playerIndex;
   final PlayerModel player;
   final Color color;
 
   const PlayerItem({
     super.key,
+    required this.playerIndex,
     required this.player,
     required this.color,
   });
@@ -27,7 +29,7 @@ class PlayerItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _renderName(),
-              _renderControlButtons(),
+              _renderControlButtons(context),
             ],
           ),
         ),
@@ -46,25 +48,47 @@ class PlayerItem extends StatelessWidget {
     );
   }
 
-  Widget _renderControlButtons() {
+  Widget _renderControlButtons(context) {
     return Row(
       children: <Widget>[
-        const Icon(
-          Icons.remove_circle_rounded,
-          size: 40,
-        ),
+        _renderDecrementScoreButton(context),
         const Padding(
-          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         ),
-        const Icon(
-          Icons.add_circle_rounded,
-          size: 40,
-        ),
+        _renderIncrementScoreButton(context),
         const Padding(
           padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
         ),
         _renderScore(),
       ],
+    );
+  }
+
+  Widget _renderDecrementScoreButton(context) {
+    return IconButton(
+      onPressed: () {
+        BlocProvider.of<PlayerBloc>(context).add(
+          PlayerScoreDecremented(
+            playerIndex: playerIndex,
+          ),
+        );
+      },
+      icon: const Icon(Icons.remove_circle_rounded),
+      iconSize: 40,
+    );
+  }
+
+  Widget _renderIncrementScoreButton(context) {
+    return IconButton(
+      onPressed: () {
+        BlocProvider.of<PlayerBloc>(context).add(
+          PlayerScoreIncremented(
+            playerIndex: playerIndex,
+          ),
+        );
+      },
+      icon: const Icon(Icons.add_circle_rounded),
+      iconSize: 40,
     );
   }
 

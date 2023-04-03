@@ -6,7 +6,7 @@ part 'player_model.g.dart';
 class PlayerModel {
   final int id;
   final String name;
-  final int score;
+  int score;
 
   PlayerModel({
     this.id = 0,

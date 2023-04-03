@@ -10,6 +10,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerBloc() : super(const PlayerState(status: LoadStatusEnum.initial)) {
     on<PlayerAdded>(_mapPlayerAddedEventToState);
     on<PlayerRemoved>(_mapPlayerRemovedEventToState);
+    on<PlayerScoreIncremented>(_mapPlayerScoreIncrementedEventToState);
+    on<PlayerScoreDecremented>(_mapPlayerScoreDecrementedEventToState);
   }
 
   void _mapPlayerAddedEventToState(
@@ -49,5 +51,45 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
         players: players,
       ),
     );
+  }
+
+  void _mapPlayerScoreIncrementedEventToState(
+      PlayerScoreIncremented event, Emitter<PlayerState> emit) async {
+    final List<PlayerModel> players = List.from(state.players);
+    final PlayerModel player = players[event.playerIndex];
+
+    players[event.playerIndex] = PlayerModel(
+      id: player.id,
+      score: player.score + 1,
+      name: player.name,
+    );
+
+    emit(
+      state.copyWith(
+        status: LoadStatusEnum.success,
+        players: players,
+      ),
+    );
+  }
+
+  void _mapPlayerScoreDecrementedEventToState(
+      PlayerScoreDecremented event, Emitter<PlayerState> emit) async {
+    final List<PlayerModel> players = List.from(state.players);
+    final PlayerModel player = players[event.playerIndex];
+
+    if (player.score > 0) {
+      players[event.playerIndex] = PlayerModel(
+        id: player.id,
+        score: player.score - 1,
+        name: player.name,
+      );
+
+      emit(
+        state.copyWith(
+          status: LoadStatusEnum.success,
+          players: players,
+        ),
+      );
+    }
   }
 }

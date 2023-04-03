@@ -22,5 +22,27 @@ class PlayerRemoved extends PlayerEvent {
   const PlayerRemoved({this.id});
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [];
+}
+
+class PlayerScoreIncremented extends PlayerEvent {
+  final int playerIndex;
+
+  const PlayerScoreIncremented({
+    this.playerIndex = 0,
+  });
+
+  @override
+  List<Object?> get props => [];
+}
+
+class PlayerScoreDecremented extends PlayerEvent {
+  final int playerIndex;
+
+  const PlayerScoreDecremented({
+    this.playerIndex = 0,
+  });
+
+  @override
+  List<Object?> get props => [];
 }

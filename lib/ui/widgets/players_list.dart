@@ -38,6 +38,7 @@ class PlayersList extends StatelessWidget {
       child: ListView.separated(
         itemBuilder: (context, index) {
           return PlayerItem(
+            playerIndex: index,
             player: players[index],
             color: colors[index],
           );

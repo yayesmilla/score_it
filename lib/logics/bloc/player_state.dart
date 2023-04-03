@@ -11,7 +11,7 @@ class PlayerState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [status, players];
+  List<Object> get props => [status, players];
 
   PlayerState copyWith({
     LoadStatusEnum? status,
