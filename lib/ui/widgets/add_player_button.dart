@@ -21,7 +21,7 @@ class AddPlayerButton extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(5),
               ),
-              Text('Add Player'),
+              Text('ADD A PLAYER'),
             ],
           )),
     );

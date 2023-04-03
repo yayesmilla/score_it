@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:score_it/logics/bloc/player_bloc.dart';
 import 'package:score_it/ui/widgets/player_item.dart';
@@ -25,15 +25,21 @@ class PlayersList extends StatelessWidget {
   }
 
   Widget _renderListOfPlayers(players) {
-    /* return BlocBuilder<PlayerBloc, PlayerState>(
-      builder: (context, state) { */
+    const List<Color> colors = [
+      Colors.redAccent,
+      Colors.indigoAccent,
+      Colors.pinkAccent,
+      Colors.greenAccent,
+      Colors.orangeAccent,
+    ];
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: ListView.separated(
         itemBuilder: (context, index) {
           return PlayerItem(
-            name: players[index].name,
-            score: players[index].score,
+            player: players[index],
+            color: colors[index],
           );
         },
         separatorBuilder: (_, __) => const SizedBox(
@@ -44,7 +50,5 @@ class PlayersList extends StatelessWidget {
         shrinkWrap: true,
       ),
     );
-    /*  },
-    ); */
   }
 }
